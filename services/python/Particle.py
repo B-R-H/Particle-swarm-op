@@ -2,19 +2,19 @@ import random as r
 
 def bounded_value(value,lowerbound,upperbound):
 	#function to bound a value within two limits 
-	if value<min:
-		return min
-	elif value>max:
-		return max
+	if value<lowerbound:
+		return lowerbound
+	elif value>upperbound:
+		return upperbound
 	else:
 		return value
 
 class Particle:
 	def __init__(self,xuper = 10,xlower=-10,yuper =10,ylower=-10):
-		self.x = (xuper - xlower)*r.random + xlower
-		self.y = (yuper - ylower)*r.random + ylower
-		self.xv = ((xuper -	xlower)*r.random + xlower)*0.05
-		self.yv = ((yuper - ylower)*r.random + ylower)*0.05
+		self.x = (xuper - xlower)*r.random() + xlower
+		self.y = (yuper - ylower)*r.random() + ylower
+		self.xv = ((xuper -	xlower)*r.random() + xlower)*0.05
+		self.yv = ((yuper - ylower)*r.random() + ylower)*0.05
 		self.xuper = xuper
 		self.xlower = xlower
 		self.yuper = yuper
@@ -25,23 +25,23 @@ class Particle:
 		self.yvuper = yuper-ylower*0.1
 		self.yvlower = ylower-yuper*0.1
 
-	def get_postion_x():
+	def get_postion_x(self):
 		# returns the x postion of the particle
 		return self.x
 
-	def get_postion_y():
+	def get_postion_y(self):
 		# returns the y postion of the particle
 		return self.y
 
-	def get_velosity_x():
+	def get_velosity_x(self):
 		# returns the x velosity of the particle
 		return self.xv
 
-	def get_velosity_y():
+	def get_velosity_y(self):
 		# returns the y velosity of the particle
 		return self.yv
 
-	def update(gx,gy):
+	def update(self,gx,gy):
 		# updates the postion and velosity of the particle based on target cordinates
 		xdif = gx - self.x
 		ydif = gy - self.y

@@ -1,6 +1,5 @@
 import pytest
-
-from services/python import Particle
+from services.python import Particle
 
 p1 = Particle.Particle()
 p2 = Particle.Particle()
@@ -41,3 +40,17 @@ def test_y_velosity():
 	assert p2yv<=20*0.1 and p2yv>=-20*0.1
 	assert p3yv<=1*0.1 and p3yv>=-1*0.1
 	assert p1yv!=p2yv or p1yv!=p3yv
+
+p1.update(0,0)
+p2.update(0,0)
+p3.update(0,0)
+
+def test_update_postion():
+	assert p1x!=p1.get_postion_x() or p1y!=p1.get_postion_y()
+	assert p2x!=p2.get_postion_x() or p2y!=p2.get_postion_y()
+	assert p3x!=p3.get_postion_x() or p3y!=p3.get_postion_y()
+
+def test_update_velosity():
+	assert p1xv!=p1.get_velosity_x() or p1yv!=p1.get_velosity_y()
+	assert p2xv!=p2.get_velosity_x() or p2yv!=p2.get_velosity_y()
+	assert p3xv!=p3.get_velosity_x() or p3yv!=p3.get_velosity_y()
