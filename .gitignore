@@ -1,0 +1,7 @@
+/pycache/
+*pyc
+/venv/
+*.DS_Store
+.coverage
+.env
+
