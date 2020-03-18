@@ -11,10 +11,6 @@ def figure_gen():
 	Z =  (5*np.sin(X/10)+5*np.cos(Y/10)+5*np.sin(np.exp(Y**2/10)+np.exp(X**2/10))*np.cos(X*Y))-(0.001*(X**2+Y**2))
 
 	fig, ax = plt.subplots()
-	CS = ax.contour(X,Y,Z)
-	ax.clabel(CS,inline=1,fontsize=10)
-	ax.set_title('fig1')
-
-	plt.show()
-
-figure_gen()
+	CS = ax.contour(X,Y,Z,linewidths=.5)
+	ax.set_title('Test surface contour plot')
+	plt.savefig("contour_plot.png",dpi = 600)
