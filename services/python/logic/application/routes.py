@@ -1,9 +1,8 @@
-from application import app
+from application import app, db
 from flask import render_template, redirect, url_for, request, jsonify
 import logic
 
 # define routes for / & /home, this function will be called when these are accessed
-@app.route('/',methods=['GET','POST'])
 @app.route('/logic',methods=['GET','POST'])
 def logic():
 	# call global from database for current itteration

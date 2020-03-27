@@ -14,3 +14,9 @@ CREATE TABLE iteration_couter (
 	PRIMARY KEY (id),
 	FOREIGN KEY (function_id) REFERENCES functions(id)
 );
+
+CREATE TABLE run_state(
+	flag VARCHAR(100),
+	state BOOLEAN,
+	PRIMARY KEY (flag)
+);
