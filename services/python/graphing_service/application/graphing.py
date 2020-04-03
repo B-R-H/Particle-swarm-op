@@ -16,7 +16,7 @@ def base_figure_gen():
 	fig, ax = plt.subplots()
 	CS = ax.contour(X,Y,Z,linewidths=.5)
 	plt.axis('off')
-	plt.savefig("contour_plot.png",dpi = 600,bbox_inches='tight',pad_inches = 0)
+	plt.savefig("application/static/contour_plot.png",dpi = 600,bbox_inches='tight',pad_inches = 0)
 	plt.clf()
 
 def overlay_particles(particles):
@@ -29,9 +29,9 @@ def overlay_particles(particles):
 		y.append(i[1])
 		xv.append(i[2])
 		yv.append(i[3])
-	im = plt.imread('contour_plot.png')
+	im = plt.imread("application/static/contour_plot.png")
 	implot = plt.imshow(im,extent=[-100, 100, -100, 100])
 	plt.scatter(x,y,c='r',s=1)
 	plt.quiver(x,y,xv,yv,color='r',width=0.005)
-	plt.savefig("static.Particle_plot.png",dpi = 600,bbox_inches='tight',pad_inches = 0)
+	plt.savefig("application/static/particle_plot.png",dpi = 600,bbox_inches='tight',pad_inches = 0)
 	plt.clf()
