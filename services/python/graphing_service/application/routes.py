@@ -14,7 +14,6 @@ def generate():
 def plot():
 	content = request.get_json()
 	particles = []
-	# particles = [[content["1"]["x"],content["1"]["y"],content["1"]["xv"],content["1"]["yv"]],[content["0"]["x"],content["0"]["y"],content["0"]["xv"],content["0"]["yv"]]]
 
 	for i in range(len(content)):
 		particles.append([content[str(i)]["x"],content[str(i)]["y"],content[str(i)]["xv"],content[str(i)]["yv"]])
