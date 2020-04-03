@@ -7,6 +7,6 @@
     }
     </style>
     <p>{{ fx }}</p>
-    <img src="{{url_for(graphing_service/figure)}}" align="left" />
+    <img src="http://Graphing:5001/figure" align="left" />
     <p>Current max value is {{ gmax[0] }}</p><p>Location: ({{ gmax[1] }},{{ gmax[2] }})</p>
 {% endblock body_content %}
