@@ -25,7 +25,7 @@ def move():
 	run_state = flag.state
 	global_max = None
 
-	while run_state:
+	while run_state==1:
 		# pulls from the databse to see if it should be running.
 		flag = Run_state.query.filter_by(flag="running particles").first()
 		run_state = flag.state
