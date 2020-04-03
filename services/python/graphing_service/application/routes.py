@@ -10,12 +10,14 @@ def generate():
 	gr.base_figure_gen()
 	return 'figure generated\n'
 
-@app.route('/plot')
+@app.route('/plot',methods=['POST'])
 def plot():
 	content = request.get_json()
 	particles = []
-	for i in content:
-		particles.append([i['x'],i['y'],i['xv'],i['yv']])
+	# particles = [[content["1"]["x"],content["1"]["y"],content["1"]["xv"],content["1"]["yv"]],[content["0"]["x"],content["0"]["y"],content["0"]["xv"],content["0"]["yv"]]]
+
+	for i in range(len(content)):
+		particles.append([content[str(i)]["x"],content[str(i)]["y"],content[str(i)]["xv"],content[str(i)]["yv"]])
 	gr.overlay_particles(particles)
 	return 'overlay generated\n'
 
