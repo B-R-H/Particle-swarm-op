@@ -1,9 +1,19 @@
 from application import app
-from flask import render_template, redirect, url_for, request, jsonify
+from flask import render_template, redirect, url_for, request, jsonify, send_file
 from application import graphing as gr
 import matplotlib
+from PIL import Image
 matplotlib.use('Agg')
 
+@app.after_request
+def add_header(response):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
 
 @app.route('/generate')
 def generate():
@@ -22,4 +32,4 @@ def plot():
 
 @app.route('/figure')
 def figure():
-	return render_template('image.html')
+	return send_file("static/particle_plot.png", mimetype='image/png')
