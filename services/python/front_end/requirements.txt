@@ -1,0 +1,7 @@
+numpy
+matplotlib
+flask
+requests
+flask-sqlalchemy
+pymysql
+pillow

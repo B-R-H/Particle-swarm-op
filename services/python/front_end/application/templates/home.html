@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body_content %}
+    <style>
+    img {
+        max-width: 90%;
+        height: auto;
+    }
+    </style>
+    <p>{{ fx }}</p>
+    <img src="http://localhost:5001/figure" align="left" />
+    <p>Current max value is {{ gmax[0] }}</p><p>Location: ({{ gmax[1] }},{{ gmax[2] }})</p>
+{% endblock body_content %}
