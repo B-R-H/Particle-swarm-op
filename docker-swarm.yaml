@@ -24,7 +24,7 @@ services:
       replicas: 2
 
   logic:
-    image: barnabyrh/logic:{Lversion}
+    image: barnabyrh/logic:${Lversion}
     ports:
       - target: 5002
         published: 5002
