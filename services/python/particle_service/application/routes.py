@@ -19,7 +19,7 @@ def move():
 
 	global partilces
 	if len(partilces)!=100:
-		return "partilces not generated correctly"
+		requests.get(url_for('generate'))
 
 	flag = Run_state.query.filter_by(flag="running particles").first()
 	run_state = flag.state
