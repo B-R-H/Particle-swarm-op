@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  frontend:
+    build: ./services/python/front_end
+    ports:
+      - target: 5000
+        published: 5000
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+    depends_on:
+      - graphing
+
+  graphing:
+    build: ./services/python/graphing_service
+    ports:
+      - target: 5001
+        published: 5001
+    depends_on:
+      - party
+
+  logic:
+    build: ./services/python/logic
+    ports:
+      - target: 5002
+        published: 5002
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+    depends_on:
+      - psodb
+
+  party:
+    build: ./services/python/particle_service
+    ports:
+      - target: 5003
+        published: 5003
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+    depends_on:
+      - psodb
+      - logic
+
+  psodb:
+    build: ./services/mysql
+    ports:
+      - target: 3306
+        published: 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

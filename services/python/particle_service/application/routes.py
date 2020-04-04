@@ -18,8 +18,8 @@ def generate():
 def move():
 
 	global partilces
-	if len(partilces)!=100:
-		requests.get(url_for('generate'))
+	while len(partilces)!=100:
+		requests.get("http://party:5003/generate")
 
 	flag = Run_state.query.filter_by(flag="running particles").first()
 	run_state = flag.state
