@@ -60,7 +60,8 @@ To run using docker compose you will need to export the DATABASE_URI and the MYS
 
 <a name="PM"></a>
 ## Project mangement
-For this project I predominatly used the github projects to organise my work. I had 3 seprate project boards one for base python functionality, one for containers and services, and one to handle the devops side of the project (CI pipline automatic deployment ect...). When I had a new bit of functionality I wanted to add or a bug I needed to fix I added it as an isue and then assigned it to the releveat board. 
+For this project I predominatly used the github projects to organise my work. I had 3 seprate project boards one for base python functionality, one for containers and services, and one to handle the devops side of the project (CI pipline automatic deployment ect...). When I had a new bit of functionality I wanted to add or a bug I needed to fix I added it as an isue and then assigned it to the releveat board.
+![alt text](Media/Git%20project.png)
 
 <a name="Use_Cases"></a>
 ## Use cases
@@ -73,6 +74,7 @@ pending
 <a name="Design"></a>
 ## Design
 The app is made up of five containers. Four of wich contain python logic and one that contains a mysql instance. The services comunicate using a varity of methods. The statring and stopping of the algorythm is done using simple get requests. The particle container passes and recives information from the logic container in jsons and purley sends jsons to the graphing container. The front end recives a full png file in a request from the graphing containerand the mysql container is used by the particle container to store imformation about the run state of the algorythm.
+![alt text](Media/Service layout.png)
 
 <a name="Testing"></a>
 ## Testing
