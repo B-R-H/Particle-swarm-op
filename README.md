@@ -10,6 +10,13 @@ Project to run particle swarms using docker swam.
   - [Docker compose](#RDC)
 * [Project brief](#PB)
 * [User stories](#User_Stories)
+* [Project mangement](#PM)
+* [Use cases](#Use_cases)
+* [Risk analysis](#Risk)
+* [Design](#Design)
+* [Testing](#Testing)
+* [CI pipline](#CI)
+* [Conclusion](#Conclusion)
 
 <a name="PSO"></a>
 ## What is PSO
@@ -51,4 +58,32 @@ To run using docker compose you will need to export the DATABASE_URI and the MYS
 * As a user I want to be able to be able to reset my simulation to check that the outcome is consistant.
 * As a user I want to be able to pasue the simulation so that I can observe that itteration.
 
+<a name="PM"></a>
+## Project mangement
 
+<a name="Use_Cases"></a>
+## Use cases
+In it's current state the application only asses two functions that are stored in different images. The first is a noisy 3D wave form to try and trap the algorthm at local maxima. The second is a simple 3D perabola that was used in the initial testing of the app.
+
+<a name="Risk"></a>
+## Risk analysis
+
+<a name="Design"></a>
+## Design
+
+<a name="Testing"></a>
+## Testing
+The base functionality of the app was built in a test driven development manner using pytest to check that the logic was firing correctly.
+[//]: # (Add images of pytest testing)
+
+To test the containers, as the logic was taken from the base modules, I used postman instead of an automated testing method as it allowd for quicker trobuleshoting.
+[//]: # (Add postman images)
+
+<a name="CI"></a>
+## CI pipline 
+
+<a name="Conclusion"></a>
+## Conclusion
+The actual functionality of the app I am very happy with. The web interface shows what is going on and the algorythm achives its goal of getting an optmal value. It could be improved by adding functionality to add custom functions and getting a better sycronised start across the particle containers.
+
+The complexity of the app however meant that it took up a significant amount of time to develop and that left less time for the CI piplene and continous deployment part of the project wich lead to it being rushed.
