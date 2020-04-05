@@ -75,7 +75,9 @@ pending
 ## Design
 The app is made up of five containers. Four of wich contain python logic and one that contains a mysql instance. The services comunicate using a varity of methods. The statring and stopping of the algorythm is done using simple get requests. The particle container passes and recives information from the logic container in jsons and purley sends jsons to the graphing container. The front end recives a full png file in a request from the graphing containerand the mysql container is used by the particle container to store imformation about the run state of the algorythm.
 ![alt text](Media/Service%20layout.png)
+
 The project is deployed across two VMs with a third acting as an nginx load balencer and fourth to house jenkins.
+
 ![alt text](Media/VM%20layout.png)
 <a name="Testing"></a>
 ## Testing
