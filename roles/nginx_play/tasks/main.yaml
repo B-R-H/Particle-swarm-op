@@ -1,0 +1,22 @@
+tasks:
+- name: 'Install NGINX'
+  apt:
+    name: nginx
+    state: latest
+    update_cache: true
+- name: 'Start NGINX Service'
+  service:
+    name: nginx
+    state: started
+- name: 'install the nginx.conf file on to the remote machine'
+  template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+  # register a variable for this templated file, we can check attributes of this in later steps
+  register: nginx_config
+- name: 'reload nginx'
+  service:
+    name: nginx
+    state: reloaded
+  # only run this task if the /etc/nginx/nginx.conf file on the remote machine changed
+  when: nginx_config.changed

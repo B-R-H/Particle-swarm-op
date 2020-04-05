@@ -1,0 +1,34 @@
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: "generate key pair"
+    openssh_keypair:
+      path: ~/.ssh/ansible_id_rsa
+
+  - name: set_up_docker
+    hosts: docker_group
+    roles:
+    - common
+    - docker
+
+  - name: nginx_setup
+    hosts: nginx_vm
+    roles:
+    - common
+    - nginx_play
+
+  - name: docker_SM
+    hosts: docker_master
+    roles:
+    - docker_master_init
+
+  - name: join_swarm
+    hosts: docker_workers
+    roles:
+    - docker_swam_join
+
+  - name: jenkins_set_up
+    hosts: jenkins_vm
+    roles:
+    - common
+    - jenkins_play
