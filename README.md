@@ -74,15 +74,16 @@ pending
 <a name="Design"></a>
 ## Design
 The app is made up of five containers. Four of wich contain python logic and one that contains a mysql instance. The services comunicate using a varity of methods. The statring and stopping of the algorythm is done using simple get requests. The particle container passes and recives information from the logic container in jsons and purley sends jsons to the graphing container. The front end recives a full png file in a request from the graphing containerand the mysql container is used by the particle container to store imformation about the run state of the algorythm.
-![alt text](Media/Service layout.png)
-
+![alt text](Media/Service%20layout.png)
+![alt text](Media/VM%20layout.png)
 <a name="Testing"></a>
 ## Testing
 The base functionality of the app was built in a test driven development manner using pytest to check that the logic was firing correctly.
-[//]: # (Add images of pytest testing)
+![alt text](Media/particle%20test.png)
+![alt text](Media/logic%20test.png)
 
 To test the containers, as the logic was taken from the base modules, I used postman instead of an automated testing method as it allowd for quicker trobuleshoting.
-[//]: # (Add postman images)
+![alt text](Media/Postman.png)
 
 <a name="CI"></a>
 ## CI pipline 
