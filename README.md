@@ -69,7 +69,7 @@ In it's current state the application only asses two functions that are stored i
 
 <a name="Risk"></a>
 ## Risk analysis
-pending
+![alt text](Media/Screenshot%202020-04-06%20at%2008.28.14.png)
 
 <a name="Design"></a>
 ## Design
