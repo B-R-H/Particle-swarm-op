@@ -2,11 +2,14 @@
 {% block body_content %}
     <style>
     img {
-        max-width: 90%;
+        max-width: 80%;
         height: auto;
     }
     </style>
     <p>{{ fx }}</p>
     <img src="http://localhost:5001/figure" align="left" />
     <p>Current max value is {{ gmax[0] }}</p><p>Location: ({{ gmax[1] }},{{ gmax[2] }})</p>
+    <a href=start> <input type=”button” value=Start> </a>
+    <a href=stop> <input type=”button” value=Stop> </a>
+    <a href=reset> <input type=”button” value=Reset> </a>
 {% endblock body_content %}

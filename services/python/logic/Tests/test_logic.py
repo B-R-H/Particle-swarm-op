@@ -1,5 +1,5 @@
 import pytest
-from services.python.logic.application import logic
+from application import logic
 
 def test_new_high():
 	a = logic.assess_on_function([0,-12,20],[15,0])

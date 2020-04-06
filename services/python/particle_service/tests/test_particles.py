@@ -1,5 +1,5 @@
 import pytest
-from services.python.particle_service.application import Particle
+from application import Particle
 
 p1 = Particle.Particle()
 p2 = Particle.Particle()

@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+  frontend:
+    image: barnabyrh/frontend:${FEversion}
+    ports:
+      - target: 5000
+        published: 5000
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+    depends_on:
+      - graphing
+    deploy:
+      replicas: 4
+
+  graphing:
+    image: barnabyrh/graphing_service:${Gversion}
+    ports:
+      - target: 5001
+        published: 5001
+    depends_on:
+      - party
+    deploy:
+      replicas: 2
+
+  logic:
+    image: barnabyrh/logic:${Lversion}
+    ports:
+      - target: 5002
+        published: 5002
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+    depends_on:
+      - psodb
+
+  party:
+    image: barnabyrh/particle_service:${PSversion}
+    ports:
+      - target: 5003
+        published: 5003
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+    depends_on:
+      - psodb
+      - logic
+    deploy:
+      replicas: 4
+
+  psodb:
+    image: barnabyrh/psodb:${DBversion}
+    ports:
+      - target: 3306
+        published: 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

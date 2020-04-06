@@ -1,0 +1,40 @@
+[docker_master]
+IP_ADDRESS_1
+
+[docker_master:vars]
+ansible_user=USER
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=<ssh keys locaton>
+
+[docker_workers]
+IP_ADDRESS_2
+
+[docker_workers:vars]
+ansible_user=USER
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=<ssh keys locaton>
+
+[docker_group]
+IP_ADDRESS_1
+IP_ADDRESS_2
+
+[docker_group:vars]
+ansible_user=USER
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=<ssh keys locaton>
+
+[nginx_vm]
+IP_ADDRESS_3
+
+[nginx_vm:vars]
+ansible_user=USER
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=<ssh keys locaton>
+
+[jenkins_vm]
+IP_ADDRESS_4
+
+[jenkins_vm:vars]
+ansible_user=USER
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=<ssh keys locaton>

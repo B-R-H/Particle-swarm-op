@@ -1,0 +1,35 @@
+- name: docker gpg key
+    apt_key:
+      url: "https://download.docker.com/linux/debian/gpg"
+      state: present
+  - name: docker apt repo
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+      state: present
+  - name: docker install
+    apt:
+      pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      state: latest
+      update_cache: true
+  - name: docker service
+    service:
+      name: docker
+      state: started
+  - name: insecure registry create Dir
+    file:
+      path: /etc/docker/
+      state: directory
+      mode: "0700"
+  - name: insecure registry copy file
+    copy:
+      src: /home/qa-admin/Ansible/daemon.json
+      dest: /etc/docker/daemon.json
+      mode: u=rw,g=,o=
+  - name: Add jenkins user to docker group
+    user:
+      name: jenkins
+      comment: docker-jenk
+      group: docker

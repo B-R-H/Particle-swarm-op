@@ -14,21 +14,25 @@ def generate():
 		partilces.append(Particle.Particle(xuper=75,xlower=-75,yuper=75,ylower=-75))
 	return "partilces generated"
 
+@app.route("/state")
+def check_state():
+	flag = Run_state.query.filter_by(flag="running particles").first()
+	run_state = flag.state
+	return jsonify({"state":run_state})
+
 @app.route("/move", methods = ["GET","POST"])
 def move():
 
 	global partilces
-	if len(partilces)!=100:
-		return "partilces not generated correctly"
+	while len(partilces)!=100:
+		requests.get("http://party:5003/generate")
 
-	flag = Run_state.query.filter_by(flag="running particles").first()
-	run_state = flag.state
+	run_state = requests.get("http://party:5003/state").json()["state"]
 	global_max = None
 
-	while run_state==1:
+	while run_state:
 		# pulls from the databse to see if it should be running.
-		flag = Run_state.query.filter_by(flag="running particles").first()
-		run_state = flag.state
+		run_state = requests.get("http://party:5003/state").json()["state"]
 		partile_location={}
 		particle_data={}
 		for i in range(len(partilces)):

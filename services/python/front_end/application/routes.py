@@ -2,7 +2,36 @@ from application import app, db
 from flask import render_template, redirect, url_for, request
 from application.models import *
 from sqlalchemy.sql.expression import func
+import requests
+import time
 
+@app.route('/start')
+def start():
+	run=Run_state.query.filter_by(flag="running particles").first()
+	run.state = True
+	db.session.commit()
+	# try block needed to stop the intentional time out from causing trouble on the front end.
+	try:
+		requests.get("http://party:5003/move",timeout=1)
+	except:
+		pass
+	return redirect(url_for('home'))
+
+@app.route('/stop')
+def stop():
+	run=Run_state.query.filter_by(flag="running particles").first()
+	run.state = False
+	db.session.commit()
+	return redirect(url_for('home'))
+
+@app.route('/reset')
+def reset():
+	requests.get("http://frontend:5000/stop")
+	time.sleep(.5)
+	Iteration_couter.query.delete()
+	db.session.commit()
+	requests.get("http://party:5003/generate")
+	return redirect(url_for('home'))
 
 @app.route('/')
 @app.route('/home')
