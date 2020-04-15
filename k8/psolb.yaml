@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: psolb
+  labels:
+    app: psolb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: psolb
+  template:
+    metadata:
+      labels:
+        app: psolb
+    spec:
+      containers:
+      - name: psolb
+        image: barnabyrh/psolb:latest
+        ports:
+        - name: http-port
+          containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: psolb
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: psolb

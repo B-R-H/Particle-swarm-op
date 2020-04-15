@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: party
+  labels:
+    app: party
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: party
+  template:
+    metadata:
+      labels:
+        app: party
+    spec:
+      containers:
+      - name: party
+        image: barnabyrh/party:latest
+        ports:
+        - name: http-port
+          containerPort: 5003
+        env:
+        - name: DATABASE_URI
+          value: mysql+pymysql://root:password@psodb/psodata
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: party
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5003
+  selector:
+    app: party

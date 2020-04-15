@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logic
+  labels:
+    app: logic
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: logic
+  template:
+    metadata:
+      labels:
+        app: logic
+    spec:
+      containers:
+      - name: logic
+        image: barnabyrh/logic:latest
+        ports:
+        - name: logic-port
+          containerPort: 5002
+        env:
+        - name: DATABASE_URI
+          value: mysql+pymysql://root:password@psodb/psodata
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: logic
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5002
+  selector:
+    app: logic

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: barnabyrh/frontend:latest
+        ports:
+        - name: http-port
+          containerPort: 5000
+        env:
+        - name: DATABASE_URI
+          value: mysql+pymysql://root:password@psodb/psodata
+        - name: FIG_IP
+          value: 20.50.106.74
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5000
+  selector:
+    app: frontend

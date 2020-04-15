@@ -1,30 +1,33 @@
 version: '3.7'
 
 services:
+  nginx:
+    build: ./services/nginx
+    image: barnabyrh/psolb 
+    ports:
+      - target: 80
+        published: 80
+    depends_on:
+      - frontend
+
   frontend:
     build: ./services/python/front_end
-    ports:
-      - target: 5000
-        published: 5000
+    image: barnabyrh/frontend
     environment:
       - DATABASE_URI=${DATABASE_URI}
-      - FIG_IP=localhost:5001
+      - FIG_IP=localhost
     depends_on:
       - graphing
 
   graphing:
     build: ./services/python/graphing_service
-    ports:
-      - target: 5001
-        published: 5001
+    image: barnabyrh/graphing
     depends_on:
       - party
 
   logic:
     build: ./services/python/logic
-    ports:
-      - target: 5002
-        published: 5002
+    image: barnabyrh/logic
     environment:
       - DATABASE_URI=${DATABASE_URI}
     depends_on:
@@ -32,9 +35,7 @@ services:
 
   party:
     build: ./services/python/particle_service
-    ports:
-      - target: 5003
-        published: 5003
+    image: barnabyrh/party
     environment:
       - DATABASE_URI=${DATABASE_URI}
     depends_on:
@@ -43,8 +44,6 @@ services:
 
   psodb:
     build: ./services/mysql
-    ports:
-      - target: 3306
-        published: 3306
+    image: barnabyrh/psodb
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: psodb
+  labels:
+    app: psodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: psodb
+  template:
+    metadata:
+      labels:
+        app: psodb
+    spec:
+      containers:
+      - name: psodb
+        image: barnabyrh/psodb:latest
+        ports:
+        - name: mysql-port
+          containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: psodb
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+  selector:
+    app: psodb
