@@ -5,7 +5,6 @@ metadata:
   labels:
     app: party
 spec:
-  replicas: 4
   selector:
     matchLabels:
       app: party
@@ -23,6 +22,9 @@ spec:
         env:
         - name: DATABASE_URI
           value: mysql+pymysql://root:password@psodb/psodata
+        resources:
+          requests:
+            cpu: "100m"
 
 ---
 
@@ -36,3 +38,18 @@ spec:
     - port: 5003
   selector:
     app: party
+
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: party
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: party
+  minReplicas: 4
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50

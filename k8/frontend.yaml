@@ -5,7 +5,6 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: frontend
@@ -24,7 +23,10 @@ spec:
         - name: DATABASE_URI
           value: mysql+pymysql://root:password@psodb/psodata
         - name: FIG_IP
-          value: 20.50.106.74
+          value: 20.50.105.88
+        resources:
+          requests:
+            cpu: "50m"
 
 ---
 
@@ -38,3 +40,18 @@ spec:
     - port: 5000
   selector:
     app: frontend
+
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50

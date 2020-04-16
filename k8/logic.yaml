@@ -5,7 +5,6 @@ metadata:
   labels:
     app: logic
 spec:
-  replicas: 4
   selector:
     matchLabels:
       app: logic
@@ -23,6 +22,9 @@ spec:
         env:
         - name: DATABASE_URI
           value: mysql+pymysql://root:password@psodb/psodata
+        resources:
+          requests:
+            cpu: "100m"
 
 ---
 
@@ -36,3 +38,18 @@ spec:
     - port: 5002
   selector:
     app: logic
+
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: logic
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: logic
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
