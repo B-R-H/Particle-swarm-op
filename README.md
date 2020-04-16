@@ -65,11 +65,11 @@ from the root of the file system. You will then need to get the public IP of the
 <a name="services"></a>
 ## Services
 <details>
-	<summary>Deatails of all of the services</summary>
-	
+<summary>Deatails of all of the services</summary>
+
 <a name="mysql"></a>
-	### Mysql
-	Simple Mysql container with the data structure needed already confiured to track the progression of the itterations. Also contains all of the flags that crontrool the run flags.	
+### Mysql
+Simple Mysql container with the data structure needed already confiured to track the progression of the itterations. Also contains all of the flags that crontrool the run flags.	
 
 </details>
 
