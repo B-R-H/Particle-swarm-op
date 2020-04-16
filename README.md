@@ -65,41 +65,11 @@ from the root of the file system. You will then need to get the public IP of the
 <a name="services"></a>
 ## Services
 <details>
-	<summary>Deatails of all of the services.</summary>
+	<summary>Deatails of all of the services</summary>
 
 	<a name="mysql"></a>
-
 	### Mysql
-	
-	Simple Mysql container with the data structure needed already confiured to track the progression of the itterations. Also contains all of the flags that crontrool the run flags.
-
-	<a name="nginx"></a>
-
-	### Nginx
-
-	Nginx container to act as a load ballencer to the various other services only exposing the front end and pade that the figure is displayed on so it can be pulled by the html code.
-
-	<a name="frontend"></a>
-
-	### Front end
-	Faslk aplication that displays the progress of the algorythm along with 3 buttons. These provide start, stop, and reset functionality.
-
-	<a name="graphing"></a>
-
-	### Graphing service
-	Service that uses [numpy](https://numpy.org) and [matplotlib](https://matplotlib.org) to generate a base contoure plot of the function being used. The location of the particles and their veloicites are recived in a post request from the particle service once it has completed an itteration. This data is then used to overlay the particles onto the contour plot and serve this up as a png file on the \figure page.
-
-	<a name="logic"></a>
-
-	### Logic
-
-	Service to asess the overal progress of the algroythim. It recives the locations of all the particels in a json from the particle service. Once recived the function is evaluated at the location of all of the particles. These values are compared to the current global maximum pulled from the databse. If a value is greater the value of the database is updated to reflect that if not the previous value is entered again. At the end of iterating through the particles the current postion of the global maximum is sent back to the particle service.
-
-	<a name="particle"></a>
-
-	### Particle
-
-	This is the core service of the algorythm. It controls all of the logic for the particles. Once triggered the service checks to see if the particles for the dimulation have been generated correctly and if they haven't it generates them. Once the particles have been sucessfully genrated a run loop is entered that is dependent on a flag stored in the database. In this loop the particles are moved and then their values are sent off the relevant services. When the global max location is recived the veloicity of all of the particles is updated to move slightly more towards it. This loop will contiue untill the run flag is updated in the databse. As the itterations increase all of the particles should converge on the global maximum found by the algorythm due to the drag on the particles.
+	Simple Mysql container with the data structure needed already confiured to track the progression of the itterations. Also contains all of the flags that crontrool the run flags.	
 
 </details>
 
